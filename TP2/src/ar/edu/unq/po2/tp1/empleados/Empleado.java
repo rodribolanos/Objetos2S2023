@@ -10,7 +10,6 @@ public abstract class Empleado {
 	//Constructor 
 	public Empleado(String nombre, String direccion, String estadoCivil, LocalDate fechaDeNacimiento,
 			int sueldoBasico) {
-		super();
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.estadoCivil = estadoCivil;
@@ -40,7 +39,17 @@ public abstract class Empleado {
 	
 	public abstract int sueldoBruto();
 	
-	public abstract int retenciones();
+	public int retenciones() {
+		return this.gastosObraSocial() + this.aportesJubilatorios() + this.gastosAdministrativos();
+	}
+	
+	protected int gastosAdministrativos() {
+		return 0;
+	}
+
+	protected abstract int gastosObraSocial();
+	
+	protected abstract int aportesJubilatorios();
 	
 	public abstract String desgloceDeSueldos(); 
 }

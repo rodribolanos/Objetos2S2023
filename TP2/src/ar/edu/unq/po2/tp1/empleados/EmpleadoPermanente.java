@@ -23,9 +23,6 @@ public class EmpleadoPermanente extends Empleado{
 	public int sueldoBruto() {
 		return this.getSueldoBasico() + this.salarioFamiliar(); 
 	}
-	public int retenciones() {
-		return this.gastosObraSocial() +  + this.aportesJubilatorios();
-	}
 	
 	private int salarioFamiliar() {
 		return this.asigPorHijo() + this.asigPorConyuge() + this.sueldoAntiguedad() ;
@@ -45,20 +42,24 @@ public class EmpleadoPermanente extends Empleado{
 	private int sueldoAntiguedad() {
 		return 50 * this.getAntiguedad();
 	}
-	private int gastosObraSocial() {
+	// Formas de calcular retenciones. 
+	@Override
+	protected int gastosObraSocial() {
 		return (int) (this.sueldoBruto() * 0.10) + (20 * this.getCantHijos()); 
 	}
-	private int aportesJubilatorios() {
+	@Override
+	protected int aportesJubilatorios() {
 		return (int) (this.sueldoBruto() * 0.15);
 	}
+	
 	public String desgloceDeSueldos() {
-	return "Sueldo neto:" + this.sueldoNeto() + 
-		 	   "Sueldo bruto:" + this.sueldoBruto() +
-		 	   "Detalle:"
-		 	   + "Salario familiar:" + this.salarioFamiliar() +
-		 	   "Sueldo basico:"  + this.getSueldoBasico() +
-		 	   "Retenciones:" + this.retenciones() +
-			   "Obra social:" + this.gastosObraSocial() +
-			   "Aportes jubilatorios:" + this.aportesJubilatorios(); 
+	return "Sueldo neto $:" + this.sueldoNeto() +  
+		 	   "\nSueldo bruto $:" + this.sueldoBruto() +
+		 	   "\nDetalle:"
+		 	   + "\nSalario familiar: $" + this.salarioFamiliar() +
+		 	   "\nSueldo basico: $"  + this.getSueldoBasico() +
+		 	   "\n Retenciones: $" + this.retenciones() +
+			   "\nObra social: $" + this.gastosObraSocial() +
+			   "\nAportes jubilatorios: $" + this.aportesJubilatorios(); 
 	}	 	   
 }

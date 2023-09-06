@@ -19,15 +19,12 @@ public class EmpleadoTemporal extends Empleado{
  	public int sueldoBruto() {
 		return this.getSueldoBasico() + this.bonoHorasExtra();
 	}
-	
-	public int retenciones() {
-		return this.gastosObraSocial() + this.aportesJubilatorios();
-	}
-	
-	private int aportesJubilatorios() {
+	@Override
+	protected int aportesJubilatorios() {
 		return (int) (this.sueldoBruto() * 0.10 + 5 * this.getCantidadDeHorasExtra());
 	}
-	private int gastosObraSocial() {
+	@Override
+	protected int gastosObraSocial() {
 		return (int) (this.sueldoBruto() * 0.10 + this.extraPorEdad());
 	}
 	private double extraPorEdad() {
@@ -42,13 +39,13 @@ public class EmpleadoTemporal extends Empleado{
 	}
 	
 	public String desgloceDeSueldos() {
-		return "Sueldo neto:" + this.sueldoNeto() + 
-			 	   "Sueldo bruto:" + this.sueldoBruto() +
+		return "Sueldo neto: $" + this.sueldoNeto() + 
+			 	   "Sueldo bruto: $" + this.sueldoBruto() +
 			 	   "Detalle:"
-			 	   + "Horas extra:" + this.bonoHorasExtra() +
-			 	   "Sueldo basico:"  + this.getSueldoBasico() +
-			 	   "Retenciones:" + this.retenciones() +
-				   "Obra social:" + this.gastosObraSocial() +
-				   "Aportes jubilatorios:" + this.aportesJubilatorios(); 
+			 	   + "Horas extra: $" + this.bonoHorasExtra() +
+			 	   "Sueldo basico: $"  + this.getSueldoBasico() +
+			 	   "Retenciones: $" + this.retenciones() +
+				   "Obra social: $" + this.gastosObraSocial() +
+				   "Aportes jubilatorios: $" + this.aportesJubilatorios(); 
 		}	 
 }

@@ -1,5 +1,6 @@
 package ar.edu.unq.po2.tp1.empresa;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.unq.po2.tp1.empleados.Empleado;
@@ -7,14 +8,16 @@ import ar.edu.unq.po2.tp1.empleados.Empleado;
 public class Empresa {
 	private String nombre;
 	private int cuit;
-	private List<Empleado> empleados;
+	private List<Empleado> empleados = new ArrayList<Empleado>();
 	//Constructor 
-	public Empresa(String nombre, int cuit, List<Empleado> listaEmpleados) {
+	public Empresa(String nombre, int cuit) {
 		this.nombre = nombre;
 		this.cuit = cuit;
-		this.empleados = listaEmpleados;
 	}
 	
+	public void contratarTrabajador(Empleado empleado) {
+		empleados.add(empleado);
+	}
 	public void realizarLiqDeSueldos() {
 		for (Empleado e: empleados) {
 			new ReciboDeHaberes(e.getNombre(), e.getDireccion(), LocalDate.now(), e.sueldoNeto(), e.sueldoBruto(), e.desgloceDeSueldos());
