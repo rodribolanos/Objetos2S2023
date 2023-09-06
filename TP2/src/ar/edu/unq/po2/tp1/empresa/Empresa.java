@@ -9,6 +9,7 @@ public class Empresa {
 	private String nombre;
 	private int cuit;
 	private List<Empleado> empleados = new ArrayList<Empleado>();
+	private List<ReciboDeHaberes> recibosEmitidos = new ArrayList<ReciboDeHaberes>();
 	//Constructor 
 	public Empresa(String nombre, int cuit) {
 		this.nombre = nombre;
@@ -19,9 +20,11 @@ public class Empresa {
 		empleados.add(empleado);
 	}
 	public void realizarLiqDeSueldos() {
-		for (Empleado e: empleados) {
-			new ReciboDeHaberes(e.getNombre(), e.getDireccion(), LocalDate.now(), e.sueldoNeto(), e.sueldoBruto(), e.desgloceDeSueldos());
-		}
+		empleados.stream().forEach(empleado -> this.liquidarSueldo(empleado));
+	}
+	
+	private void liquidarSueldo(Empleado e) {
+		recibosEmitidos.add(new ReciboDeHaberes(e.getNombre(), e.getDireccion(), LocalDate.now(), e.sueldoNeto(), e.sueldoBruto(), e.desgloceDeSueldos()));		
 	}
 	
 	public int montoNetoSueldos() {

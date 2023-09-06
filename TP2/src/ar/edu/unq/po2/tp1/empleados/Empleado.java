@@ -51,5 +51,6 @@ public abstract class Empleado {
 	
 	protected abstract int aportesJubilatorios();
 	
+	
 	public abstract String desgloceDeSueldos(); 
 }
