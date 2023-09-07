@@ -26,4 +26,8 @@ public class Counter {
 	private boolean esMultiplo(int dividendo, int divisor) {
 		return (dividendo % divisor) == 0;
 	}
+	
+	public void addNumber(int n) {
+		numeros.add(n);
+	}
 }
