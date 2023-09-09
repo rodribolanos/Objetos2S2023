@@ -1,5 +1,8 @@
 package ar.edu.unq.po2.tp1.empleados;
 import java.time.LocalDate;
+import java.util.List;
+
+import ar.edu.unq.po2.tp1.empresa.Concepto;
 
 public abstract class Empleado {
 	protected String nombre;
@@ -52,5 +55,5 @@ public abstract class Empleado {
 	protected abstract int aportesJubilatorios();
 	
 	
-	public abstract String desgloceDeSueldos(); 
+	public abstract List<Concepto> desgloceDeSueldos(); 
 }

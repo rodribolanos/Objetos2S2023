@@ -1,6 +1,10 @@
 package ar.edu.unq.po2.tp1.empleados;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import ar.edu.unq.po2.tp1.empresa.Concepto;
 
 public class EmpleadoPermanente extends Empleado{
 	private int cantidadDeHijos;
@@ -52,14 +56,15 @@ public class EmpleadoPermanente extends Empleado{
 		return (int) (this.sueldoBruto() * 0.15);
 	}
 	
-	public String desgloceDeSueldos() {
-	return "Sueldo neto $:" + this.sueldoNeto() +  
-		 	   "\nSueldo bruto $:" + this.sueldoBruto() +
-		 	   "\nDetalle:"
-		 	   + "\nSalario familiar: $" + this.salarioFamiliar() +
-		 	   "\nSueldo basico: $"  + this.getSueldoBasico() +
-		 	   "\n Retenciones: $" + this.retenciones() +
-			   "\nObra social: $" + this.gastosObraSocial() +
-			   "\nAportes jubilatorios: $" + this.aportesJubilatorios(); 
+	public List<Concepto> desgloceDeSueldos() {
+		List<Concepto> conceptos = new ArrayList<Concepto>();
+		conceptos.add(new Concepto("Sueldo basico", this.getSueldoBasico() ));
+		conceptos.add(new Concepto("Salario familiar", this.salarioFamiliar() ));
+		conceptos.add(new Concepto("Gastos obra social", this.gastosObraSocial() ));
+		conceptos.add(new Concepto("Aportes jubilatorios", this.aportesJubilatorios() ));
+		conceptos.add(new Concepto("Gastos administrativos", 0 ));
+		
+		return conceptos;
+
 	}	 	   
 }

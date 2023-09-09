@@ -46,6 +46,7 @@ class EmpleadoTest {
 		assertEquals(20000, rodriC.sueldoBruto());
 		assertEquals(50, rodriC.retenciones());
 		assertEquals(19950, rodriC.sueldoNeto());
-		assertEquals(rodriC.desgloceDeSueldos(), "Sueldo neto: $19950" + "\nSueldo bruto: $20000" + "\nDetalle:" + "\nSueldo basico: $20000" + "\nRetenciones: $50"+ "\nGastos Administrativos: $50");
+		apple.realizarLiqDeSueldos();
+		assertEquals(apple.getRecibosEmitidos().size(), 3);
 	}
 }

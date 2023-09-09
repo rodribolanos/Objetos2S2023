@@ -50,4 +50,8 @@ public class Empresa {
 		}
 		return sumaRetenciones;
 	}
+	
+	public List<ReciboDeHaberes> getRecibosEmitidos() {
+		return recibosEmitidos;
+	}
 }

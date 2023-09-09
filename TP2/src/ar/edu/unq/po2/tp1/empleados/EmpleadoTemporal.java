@@ -1,5 +1,9 @@
 package ar.edu.unq.po2.tp1.empleados;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import ar.edu.unq.po2.tp1.empresa.Concepto;
 
 public class EmpleadoTemporal extends Empleado{
 	private LocalDate fechaDeFinTemporal;
@@ -38,14 +42,14 @@ public class EmpleadoTemporal extends Empleado{
 		return precioPorHoraExtra * this.getCantidadDeHorasExtra();
 	}
 	
-	public String desgloceDeSueldos() {
-		return "Sueldo neto: $" + this.sueldoNeto() + 
-			 	   "Sueldo bruto: $" + this.sueldoBruto() +
-			 	   "Detalle:"
-			 	   + "Horas extra: $" + this.bonoHorasExtra() +
-			 	   "Sueldo basico: $"  + this.getSueldoBasico() +
-			 	   "Retenciones: $" + this.retenciones() +
-				   "Obra social: $" + this.gastosObraSocial() +
-				   "Aportes jubilatorios: $" + this.aportesJubilatorios(); 
-		}	 
+	public List<Concepto> desgloceDeSueldos() {
+		List<Concepto> conceptos = new ArrayList<Concepto>();
+		conceptos.add(new Concepto("Sueldo basico", this.getSueldoBasico() ));
+		conceptos.add(new Concepto("Horas extra", this.bonoHorasExtra() ));
+		conceptos.add(new Concepto("Gastos obra social", this.gastosObraSocial() ));
+		conceptos.add(new Concepto("Aportes jubilatorios", this.aportesJubilatorios() ));
+		conceptos.add(new Concepto("Gastos administrativos", 0 ));
+		
+		return conceptos;	
+	}	 
 }
