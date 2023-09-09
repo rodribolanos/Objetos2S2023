@@ -7,11 +7,11 @@ import ar.edu.unq.po2.tp1.empresa.Concepto;
 public abstract class Empleado {
 	protected String nombre;
 	protected String direccion;
-	protected String estadoCivil;
+	protected EstadoCivil estadoCivil;
 	protected LocalDate fechaDeNacimiento;
 	protected int sueldoBasico;
 	//Constructor 
-	public Empleado(String nombre, String direccion, String estadoCivil, LocalDate fechaDeNacimiento,
+	public Empleado(String nombre, String direccion, EstadoCivil estadoCivil, LocalDate fechaDeNacimiento,
 			int sueldoBasico) {
 		this.nombre = nombre;
 		this.direccion = direccion;
@@ -55,5 +55,9 @@ public abstract class Empleado {
 	protected abstract int aportesJubilatorios();
 	
 	
-	public abstract List<Concepto> desgloceDeSueldos(); 
+	public abstract List<Concepto> desgloceDeSueldos();
+
+	public EstadoCivil getEstadoCivil() {
+		return estadoCivil;
+	} 
 }

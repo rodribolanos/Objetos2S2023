@@ -11,7 +11,7 @@ public class EmpleadoContratado extends Empleado{
 	private int numeroDeContrato;
 	private String medioDePago;
 	
-	public EmpleadoContratado(String nombre, String direccion, String estadoCivil, LocalDate fechaDeNacimiento,
+	public EmpleadoContratado(String nombre, String direccion, EstadoCivil estadoCivil, LocalDate fechaDeNacimiento,
 			int sueldoBasico, int numeroDeContrato, String medioDePago) {
 		super(nombre, direccion, estadoCivil, fechaDeNacimiento, sueldoBasico);
 		this.numeroDeContrato = numeroDeContrato;

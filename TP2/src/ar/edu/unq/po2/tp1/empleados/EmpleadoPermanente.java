@@ -10,7 +10,7 @@ public class EmpleadoPermanente extends Empleado{
 	private int cantidadDeHijos;
 	private int antiguedad;
 	
-	public EmpleadoPermanente(String nombre, String direccion, String estadoCivil, LocalDate fechaDeNacimiento,
+	public EmpleadoPermanente(String nombre, String direccion, EstadoCivil estadoCivil, LocalDate fechaDeNacimiento,
 			int sueldoBasico, int cantidadDeHijos, int antiguedad) {
 		super(nombre, direccion, estadoCivil, fechaDeNacimiento, sueldoBasico);
 		this.cantidadDeHijos = cantidadDeHijos;
@@ -36,11 +36,7 @@ public class EmpleadoPermanente extends Empleado{
 	}
 	
 	private int asigPorConyuge() {
-	if (estadoCivil == "Casado") {
-		 return 100;
-	 } else {
-		 return 0;
-	 }
+		return this.getEstadoCivil().bonusPorEstado();
 	}
 	
 	private int sueldoAntiguedad() {
