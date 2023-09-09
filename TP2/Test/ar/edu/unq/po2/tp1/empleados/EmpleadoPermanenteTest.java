@@ -14,12 +14,15 @@ class EmpleadoTest {
 	Empleado nachitoT; 
 	Empleado rodriC;
 	Empresa apple;
-	
+	EstadoCivil casado;
+	EstadoCivil soltero;
 	@BeforeEach
 	void setUp() throws Exception {
-		leanP = new EmpleadoPermanente("Leandro", "Evergreen Avenue", "Soltero", LocalDate.of(1930, 8, 16), 20000, 4, 3);
-		nachitoT = new EmpleadoTemporal("Nacho", "Fake Street", "Casado", LocalDate.of(1950, 6, 23), 10000, LocalDate.of(2023, 12, 31),  10);
-		rodriC = new EmpleadoContratado("Rodri", "Quilmes Road", "Viudo", LocalDate.of(2001, 7, 30), 20000, 4000, "Efectivo");
+		soltero = new Soltero();
+		casado = new Casado();
+		leanP = new EmpleadoPermanente("Leandro", "Evergreen Avenue", soltero, LocalDate.of(1930, 8, 16), 20000, 4, 3);
+		nachitoT = new EmpleadoTemporal("Nacho", "Fake Street", casado, LocalDate.of(1950, 6, 23), 10000, LocalDate.of(2023, 12, 31),  10);
+		rodriC = new EmpleadoContratado("Rodri", "Quilmes Road", casado, LocalDate.of(2001, 7, 30), 20000, 4000, "Efectivo");
 		apple = new Empresa("Apple", 2028);
 		apple.contratarTrabajador(leanP);
 		apple.contratarTrabajador(nachitoT);
