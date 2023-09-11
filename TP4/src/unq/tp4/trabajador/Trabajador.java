@@ -15,7 +15,7 @@ public class Trabajador {
 	}
 	
 	public double getImpuestoAPagar() {
-		return (this.getImpuestoAPagar() * 0.02); 
+		return (this.getMontoImponible() * 2 / 100); 
 	}
 	
 	public void generarIngreso(Ingreso ingreso) {
