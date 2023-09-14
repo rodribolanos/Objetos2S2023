@@ -1,8 +1,8 @@
-package unq.tp5.mercadoCentral;
+package unq.tp5.pagables;
 
 public class ProductoCooperativa extends Producto{
-	public ProductoCooperativa(int precio) {
-		super(precio);
+	public ProductoCooperativa(int precio, int stock) {
+		super(precio, stock);
 	}
 
 	@Override 

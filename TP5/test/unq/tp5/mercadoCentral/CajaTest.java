@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import unq.tp5.pagables.ProductoCooperativa;
+import unq.tp5.pagables.ProductoEmpresa;
+
 class CajaTest {
 	Caja caja;
 	ProductoEmpresa leche;

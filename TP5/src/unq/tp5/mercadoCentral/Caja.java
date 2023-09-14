@@ -3,16 +3,18 @@ package unq.tp5.mercadoCentral;
 import java.util.ArrayList;
 import java.util.List;
 
+import unq.tp5.pagables.Pagable;
+import unq.tp5.pagables.Producto;
+
 public class Caja {
-	private List<Producto> stock = new ArrayList<Producto>();
-	private List<Producto> productos = new ArrayList<Producto>();
-	
-	public void registrarProducto(Producto producto) {
-		stock.remove(producto);
-		productos.add(producto);
+	private List<Pagable> compra = new ArrayList<Pagable>();
+		
+	public void registrarPago(Pagable elemento) {
+		compra.add(elemento);
+		elemento.serPagado();
 	}
 	
 	public int getMontoTotal() {
-		return productos.stream().mapToInt(producto -> producto.getPrecio()).sum();
-	}stock
+		return compra.stream().mapToInt(producto -> producto.getPrecio()).sum();
+	}
 }
