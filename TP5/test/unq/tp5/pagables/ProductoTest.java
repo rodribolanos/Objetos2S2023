@@ -1,4 +1,4 @@
-package unq.tp5.mercadoCentral;
+package unq.tp5.pagables;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,9 +17,9 @@ public class ProductoTest {
 	
 	@BeforeEach
 	void setUp() {
-		leche = new ProductoEmpresa(100);
-		galletitas = new ProductoCooperativa(200);
-		nesquik = new ProductoEmpresa(300);
+		leche = new ProductoEmpresa(100, 10);
+		galletitas = new ProductoCooperativa(200, 8);
+		nesquik = new ProductoEmpresa(300, 20);
 	}
 	
 	@Test
@@ -28,4 +28,14 @@ public class ProductoTest {
 		assertEquals(300, nesquik.getPrecio());
 		assertEquals(180, galletitas.getPrecio());
 	}
+	
+	@Test 
+	public void serPagado() {
+		leche.serPagado();
+		assertEquals(9, leche.getStock());
+		leche.serPagado();
+		assertEquals(8, leche.getStock());
+		nesquik.serPagado();
+		assertEquals(19, nesquik.getStock());
+	}	
 }

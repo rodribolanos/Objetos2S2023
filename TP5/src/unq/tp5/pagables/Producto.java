@@ -1,8 +1,5 @@
 package unq.tp5.pagables;
 
-import unq.tp5.mercadoCentral.Agencia;
-import unq.tp5.mercadoCentral.Caja;
-
 public abstract class Producto implements Pagable{
 	private int stock;
 	private int precio;
@@ -17,6 +14,16 @@ public abstract class Producto implements Pagable{
 	}
 	
 	public void serPagado() { //Resta 1 a su stock 
-		stock = stock - 1;
+		if (this.puedeSerVendido()) {
+		stock = getStock() - 1;
+		}
+	}
+
+	public int getStock() {
+		return stock;
+	}
+	
+	public boolean puedeSerVendido() {
+		return stock > 0;
 	}
 }
