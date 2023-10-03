@@ -16,9 +16,9 @@ class SecretariaDeDeportesTest {
 	void setUp() throws Exception {
 	miercoles = DiaDeLaSemana.MIERCOLES;
 	jueves = DiaDeLaSemana.JUEVES;
-	futbol5hs = new ActividadSemanal(miercoles,5,Actividad.FUTBOL, 1);// Actividad disenada para testear un dia no concurrente
-	futbolDomingo = new ActividadSemanal(DiaDeLaSemana.DOMINGO, 6, Actividad.FUTBOL, 1); // Actividad mas cara que futbol5hs
-	basket6hs = new ActividadSemanal(jueves, 6, Actividad.BASKET, 1);	
+	futbol5hs = new ActividadSemanal(miercoles,5,Deporte.FUTBOL, 1);// Actividad disenada para testear un dia no concurrente
+	futbolDomingo = new ActividadSemanal(DiaDeLaSemana.DOMINGO, 6, Deporte.FUTBOL, 1); // Actividad mas cara que futbol5hs
+	basket6hs = new ActividadSemanal(jueves, 6, Deporte.BASKET, 1);	
 	secretaria = new SecretariaDeDeportes();
 	secretaria.agregarActividad(basket6hs);
 	secretaria.agregarActividad(futbol5hs);
@@ -42,6 +42,12 @@ class SecretariaDeDeportesTest {
 		assertEquals(3, secretaria.duracionDeActividades());
 	}
 	
+	
+	@Test 
+	void laMasBarataDadoUnDeporte() {
+		assertEquals(secretaria.laDeMenorCosteDe(Deporte.FUTBOL), futbol5hs);
+		assertEquals(secretaria.laDeMenorCosteDe(Deporte.BASKET), basket6hs);
+	}
 	@Test 
 	void mapeoDeActividades() {
 		assertEquals(2, secretaria.actividadPorMenorValor().size());

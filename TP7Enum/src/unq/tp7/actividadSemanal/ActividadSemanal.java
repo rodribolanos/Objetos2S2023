@@ -1,25 +1,25 @@
 package unq.tp7.actividadSemanal;
 
 public class ActividadSemanal implements Comparable<ActividadSemanal>{
-	public ActividadSemanal(DiaDeLaSemana dia, int horario, Actividad actividad, int duracion) {
+	public ActividadSemanal(DiaDeLaSemana dia, int horario, Deporte deporte, int duracion) {
 		super();
 		this.dia = dia;
 		this.horario = horario;
-		this.actividad = actividad;
+		this.deporte = deporte;
 		this.duracion = duracion;
 	}
 
 	private DiaDeLaSemana dia;
 	private int horario;
-	private Actividad actividad;
+	private Deporte deporte;
 	private int duracion;
 	
-	public int costo() {
+	public int getCosto() {
 		return this.valorPorDia() + this.valorPorComplejidad();
 	}
 
 	private int valorPorComplejidad() {
-		return actividad.complejidad() * 200;
+		return deporte.complejidad() * 200;
 	}
 
 	private int valorPorDia() {
@@ -29,33 +29,33 @@ public class ActividadSemanal implements Comparable<ActividadSemanal>{
 			return 0;
 		}
 	}
-
-	public boolean esDeFutbol() {
-		return actividad == Actividad.FUTBOL;
-	}
 	
 	public boolean esDeComplejidad(int c) {
-		return actividad.complejidad() == c;
+		return deporte.complejidad() == c;
 	}
 	
-	public int duracion() {
+	public int getDuracion() {
 		return duracion;
 	}
 
 	@Override
 	public int compareTo(ActividadSemanal act) {
-		return this.costo() - act.costo();
+		return this.getCosto() - act.getCosto();
 	}
 
-	public Actividad actividad() {
-		return actividad;
+	public Deporte getDeporte() {
+		return deporte;
 	}
 	
 	@Override 
 	public String toString() {
-		return "Deporte:" + actividad + 
-				"Dia:" + dia + "a las" + horario + 
-				"Duracion:" + duracion + "hora/s";
+		return "Deporte: " + deporte.name() +  
+				". Dia: " + dia.name() + " a las " + horario + 
+				". Duracion: " + duracion + " hora/s.";
+	}
+
+	public boolean esActividadDe(Deporte act) {
+		return deporte == act;
 	}
 	
 }

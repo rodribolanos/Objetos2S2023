@@ -5,13 +5,14 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class SecretariaDeDeportes {
 	private List<ActividadSemanal> actividades = new ArrayList<ActividadSemanal>();
 	
 	public List<ActividadSemanal> lasActividadesDeFutbol() {
 		return actividades.stream()
-				.filter(actividad -> actividad.esDeFutbol())
+				.filter(actividad -> actividad.esActividadDe(Deporte.FUTBOL))
 				.toList();
  	}
 	
@@ -23,24 +24,28 @@ public class SecretariaDeDeportes {
 	
 	public int duracionDeActividades() {
 		return actividades.stream()
-				.mapToInt(act -> act.duracion())
+				.mapToInt(act -> act.getDuracion())
 				.sum();
 	}
 	
-	public Map<Actividad, ActividadSemanal> actividadPorMenorValor() {
-		Map<Actividad, ActividadSemanal> mapDeAct = new HashMap<Actividad, ActividadSemanal>();
-		actividades.stream()
-			.filter(actS -> this.esLaMasBarata(actS, actividades))
-			.forEach(actividadS -> mapDeAct.put(actividadS.actividad(),actividadS));
+	public ActividadSemanal laDeMenorCosteDe(Deporte dep) {
+		return actividades.stream()
+				.filter(actividad -> actividad.esActividadDe(dep))
+				.min(Comparator.naturalOrder()).get();
+	}
+	
+	public Map<Deporte, ActividadSemanal> actividadPorMenorValor() {
+		Map<Deporte, ActividadSemanal> mapDeAct = actividades.stream()
+				.collect(Collectors.groupingByConcurrent(ActividadSemanal::getDeporte ,Collectors.minBy(Comparator.comparing(ActividadSemanal::getCosto))))
+	            .entrySet()
+	            .stream()
+	            .collect(Collectors.toMap(
+	                    Map.Entry::getKey,
+	                    entry -> entry.getValue().orElse(null)));
 		
 		return mapDeAct; 
 	}
 
-	private boolean esLaMasBarata(ActividadSemanal actS, List<ActividadSemanal> actividades2) {
-		return actS == actividades2.stream()
-				.filter(act -> actS.actividad() == act.actividad())
-				.min(Comparator.naturalOrder()).get();
-	}
 	
 	public void agregarActividad(ActividadSemanal actS) {
 		actividades.add(actS);

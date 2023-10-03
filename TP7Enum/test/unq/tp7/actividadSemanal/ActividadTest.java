@@ -6,14 +6,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ActividadTest {
-	Actividad futbol;
-	Actividad running;
-	Actividad basket;
+	Deporte futbol;
+	Deporte running;
+	Deporte basket;
 	@BeforeEach
 	void setUp() throws Exception {
-	futbol = Actividad.FUTBOL;
-	running = Actividad.RUNNING;
-	basket = Actividad.BASKET;
+	futbol = Deporte.FUTBOL;
+	running = Deporte.RUNNING;
+	basket = Deporte.BASKET;
 	}
 
 	@Test
